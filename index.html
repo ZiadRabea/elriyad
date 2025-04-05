@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elriyad Gardens</title>
+  <style>
+    @import url(https://fonts.googleapis.com/earlyaccess/Cairo.css);
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    @import url(https://fonts.googleapis.com/earlyaccess/lateef.css);
+    @import url(https://fonts.googleapis.com/earlyaccess/scheherazade.css);
+    @import url(https://fonts.googleapis.com/earlyaccess/thabit.css);
+    html{
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f2f9ff;
+      color: #333;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      direction: rtl;
+    }
+    
+    h2 {
+      font-family: Cairo;
+    }
+    
+    /* Enhanced Fixed Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1001;
+    }
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    .logo-container img {
+      height: 50px;
+      margin-left: 10px;
+    }
+    .logo-container .site-title {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #008000;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-menu li {
+      margin: 0 15px;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      color: #008000;
+      font-size: 1.1em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-menu a:after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: #008000;
+      width: 0;
+      transition: width 0.3s ease;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+    .nav-menu a:hover:after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: linear-gradient(135deg, #e0f7fa, #f3e5f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 0 20px;
+      background-image: url("imgs/Pica-enhance-20250304220015.png");
+      background-size: cover;
+      background-position: center;
+      margin-top: 80px; /* to offset fixed navbar height */
+    }
+    .hero h1 {
+      font-size: 3em;
+      z-index: 2;
+      line-height: 1.2;
+      color: #ffffff;
+      font-family: Cairo;
+      margin: 0;
+    }
+    .cta-button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: #fff;
+      background: linear-gradient(135deg, #55f74f, #9575cd);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 2;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-button:hover {
+      background: linear-gradient(135deg, #81d4fa, #b39ddb);
+    }
+    .ripple {
+      position: absolute;
+      border: 5px solid rgba(1, 87, 155, 0.3);
+      border-radius: 50%;
+      animation: ripple 4s infinite;
+      z-index: 1;
+    }
+    .ripple:nth-child(1) { width: 200px; height: 200px; }
+    .ripple:nth-child(2) { width: 300px; height: 300px; animation-delay: 1s; }
+    .ripple:nth-child(3) { width: 400px; height: 400px; animation-delay: 2s; }
+    @keyframes ripple {
+      0% {
+        transform: scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    /* Features Section (General) */
+    .features {
+      padding: 50px 20px;
+      background: #fff;
+    }
+    .features h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+      color: #01579b;
+    }
+    
+    /* About Us and Why Us content */
+    .features .content-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .features .content-container .image {
+      flex: 1;
+      min-width: 300px;
+    }
+    .features .content-container .image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .features .content-container .text {
+      flex: 1;
+      min-width: 300px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .feature-item {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: #f9f9f9;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .feature-item:hover {
+      transform: scale(1.03);
+    }
+    .feature-item img {
+      width: 100%;
+      display: block;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    .feature-item:hover img {
+      filter: grayscale(0%);
+    }
+    .feature-description {
+      padding: 15px;
+      text-align: center;
+    }
+    .feature-description h3 {
+      margin: 10px 0 5px;
+      color: #800080;
+    }
+    .feature-description p {
+      font-size: 0.95em;
+      line-height: 1.4;
+    }
+    
+    /* Footer with Contact Form */
+    footer {
+      background: #f2f9ff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    footer h3 {
+      font-size: 2em;
+      color: #01579b;
+      margin-bottom: 20px;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      width: 100%;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .contact-form button {
+      padding: 15px;
+      font-size: 1.2em;
+      color: #fff;
+      background: #9575cd;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #b39ddb;
+    }
+  </style>
+  <script>
+    // Change navbar style on scroll for a subtle animation effect
+    window.addEventListener('scroll', function() {
+      var navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Enhanced Fixed Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="https://res.cloudinary.com/z-apps/image/upload/v1/media/store_logos/%D8%AA%D8%B5%D9%85%D9%8A%D9%85_%D8%A8%D8%AF%D9%88%D9%86_%D8%B9%D9%86%D9%88%D8%A7%D9%86-removebg-preview_2_efkcy7" alt="Logo">
+        <span class="site-title">الرياض</span>
+      </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#about">نبذة عنا</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div style="z-index: 1000;">
+      <h1>صمم حديقة منزلك من الأرض الى السماء, ... تواصل معنا اليوم!</h1>
+      <a href="wa.me://+201156560139" class="cta-button">حوّل مساحتك الخارجية إلى جنة خضراء</a>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="features about-us" id="about">
+    <h2>نبذة عنا</h2>
+    <div class="content-container">
+      <div class="image">
+        <img src="imgs/Red and White Video Centric Coming Soon Instagram Post.png" alt="About us image">
+      </div>
+      <div class="text">
+        <p>
+          مرحباً بكم في رياض، حيث نمتلك الشغف لتحويل مساحتك الخارجية إلى واحة خضراء. نحن متخصصون في تصميم وتنفيذ الحدائق بمزيج من الإبداع والاحتراف،
+          معتمدين على أحدث التقنيات والخبرة الواسعة لضمان تحقيق رؤيتك وتحويلها إلى واقع ينبض بالحياة.
+        </p>
+        <br>
+        <p>
+          شركة الرياض هي أكثر من مجرد شركة زراعية، نحن رواد في مجال الزراعة وتصميم الحدائق، نعمل برؤية واضحة وهي "تحويل كل مساحة إلى جنة خضراء". بفضل فريقنا من المتخصصين ذوي الخبرة العالية، نقدم لعملائنا حلولاً مبتكرة وعملية، تجمع بين الجمال والاستدامة.
+        </p>
+        <br>
+        <p>
+          نحن نفتخر بتقديم منتجات وخدمات تلبي أعلى توقعات العملاء، مع الحفاظ على البيئة وتعزيز الوعي بأهمية النباتات في حياتنا. نهدف إلى أن نكون الشريك المفضل لكل من يبحث عن الجودة والتميز في عالم الزراعة والتصميم البيئي.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section class="features why-us" id="why-us">
+    <h2>ما يميزنا</h2>
+    <div class="content-container">
+      <div class="image">
+        <img src="https://images.pexels.com/photos/1145257/pexels-photo-1145257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Why choose us image">
+      </div>
+      <div class="text">
+        <ul>
+          <li>فريق متخصص ذو خبرة عالية في تصميم الحدائق</li>
+          <li>تصاميم مبتكرة ومخصصة لكل عميل</li>
+          <li>استخدام أجود المواد والنباتات</li>
+          <li>استشارات متكاملة لتحويل أفكارك إلى واقع ملموس</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Grid (Services) -->
+  <section class="features" id="services">
+    <h2>خدماتنا</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <img src="imgs/21dc6926-b4d5-431f-89d3-bcc1e96e326f.jpg" width="400" height="250" alt="Plants">
+        <div class="feature-description">
+          <h3>إنتاج و توريد النباتات</h3>
+          <p>إنتاج و توريد النباتات</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <img src="imgs/74f81591f43aa03d9d5329aeb1e464c4.jpg" width="400" height="250" alt="Consulting">
+        <div class="feature-description">
+          <h3>الاستشارات الزراعيه</h3>
+          <p>دعم فني من المتخصصين لتقديم المعلومات الدقيقة علمياً وبطريقة مبسطة</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <img src="imgs/89b5f138d68439344a1b17ef3f3a2fd3.png" width="400" height="250" alt="Garden Design">
+        <div class="feature-description">
+          <h3>تصميم وتنفيذ الحدائق</h3>
+          <p>تصاميم مبتكرة للحدائق واللاندسكيب</p>
+        </div>
+      </div>
+      <div class="feature-item" onclick="window.open('https://infinitfolio.vercel.app/stores/elriyad/')">
+        <img src="https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="400" height="250" alt="Store">
+        <div class="feature-description">
+          <h3>تصفح المتجر</h3>
+          <p>تصفح المتجر واحصل على أجود النباتات</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer with Contact Form -->
+  <footer id="contact">
+    <h3>تواصل معنا</h3>
+    <form class="contact-form">
+      <input type="text" placeholder="اسمك" required>
+      <input type="email" placeholder="بريدك الإلكتروني" required>
+      <textarea placeholder="رسالتك" required></textarea>
+      <button type="submit">ارسال</button>
+    </form>
+    <p style="margin-top:20px;">
+      هل أنت جاهز للخطوة التالية؟ 
+      <a href="wa.me://+201156560139" class="cta-button">تواصل معنا</a>
+    </p>
+  </footer>
+</body>
+</html>
