@@ -23,7 +23,19 @@
       scroll-behavior: smooth;
       direction: rtl;
     }
-    
+    /* Store Embed Styling */
+    .store-frame-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    @media screen and (max-width: 768px) {
+      .store-frame-container iframe {
+        height: 75vh;
+      }
+    }
+
     h2 {
       font-family: Cairo;
     }
@@ -402,7 +414,20 @@
       </div>
     </div>
   </section>
-  
+
+  <!-- Store Embed Section -->
+  <section class="features" id="store">
+    <h2>تصفح متجرنا</h2>
+    <div class="store-frame-container">
+      <iframe 
+        src="https://infinitfolio.vercel.app/stores/elriyad/" 
+        title="متجر الرياض" 
+        loading="lazy" 
+        allowfullscreen
+        style="width: 100%; height: 90vh; border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      </iframe>
+    </div>
+  </section>
   <!-- Footer with Contact Form -->
   <footer id="contact">
     <h3>تواصل معنا</h3>
